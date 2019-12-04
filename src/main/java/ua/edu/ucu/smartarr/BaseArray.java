@@ -1,17 +1,18 @@
 package ua.edu.ucu.smartarr;
 
 // Base array for decorators
+//
 public class BaseArray implements SmartArray {
-    public Object[] List;
+    public Object[] list;
 
 
     public BaseArray(Object[] myArray){
-        List = myArray;
+        list = myArray;
     }
 
     @Override
     public Object[] toArray() {
-        return List.clone();
+        return this.list;
     }
 
     @Override
@@ -21,6 +22,11 @@ public class BaseArray implements SmartArray {
 
     @Override
     public int size() {
-        return List.length;
+        return list.length;
     }
-}
+
+    public void setValue(int i) {
+        list[i] = 0;
+    }
+    }
+

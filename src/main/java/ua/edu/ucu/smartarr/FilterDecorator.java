@@ -7,25 +7,17 @@ import java.util.Arrays;
 
 // Tests every element and removes it if it doesn't satisfy MyPredicate
 public class FilterDecorator extends SmartArrayDecorator{
+    private MyPredicate mypredi;
 
     public FilterDecorator(SmartArray smartArray, MyPredicate predicate){
         super(smartArray);
-        Object[] myArray= toArray();
-        ArrayList<Object> newArray = new ArrayList<>();
-        int size= size();
-        for(int i = 0; i<size; i++){
-            if (predicate.test(myArray[i])){
-                newArray.add(myArray[i]);
-            }
-
+        this.mypredi = predicate;
         }
-        this.smartArray = new BaseArray(newArray.toArray());
 
-    }
 
     @Override
     public Object[] toArray() {
-        return smartArray.toArray();
+        return  Arrays.stream(smartArray.toArray()).filter(mypredi).toArray();
     }
 
     @Override

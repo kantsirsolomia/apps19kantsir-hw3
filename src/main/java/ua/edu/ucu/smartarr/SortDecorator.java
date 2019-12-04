@@ -8,19 +8,18 @@ import java.util.List;
 
 // Sorts elements using MyComparator to compare them
 public class SortDecorator  extends SmartArrayDecorator{
+    private MyComparator mycomp;
 
     public SortDecorator(SmartArray smartArray, MyComparator comparator){
         super(smartArray);
-        Object[] myArray= toArray();
-        List<Object> newList = Arrays.asList(myArray);
-        newList.sort(comparator);
-        this.smartArray = new BaseArray(newList.toArray());
-
-
+        mycomp = comparator;
     }
+
     @Override
     public Object[] toArray() {
-        return smartArray.toArray();
+        Object[] array = smartArray.toArray();
+        Arrays.sort(array, mycomp);
+        return array;
     }
 
     @Override

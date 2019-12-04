@@ -9,22 +9,31 @@ import ua.edu.ucu.smartarr.*;
 public class SmartArrayApp {
 
     public static final double POINT = 4.0;
-
-    public static void main(String [ ] args){
-        Student[] students = {
-                new Student("Ivar", "Grimstad", 3.9, 2),
-                new Student("Ittai", "Zeidman", 4.5, 1),
-                new Student("Antons", "Kranga", 4.0, 2),
-                new Student("Burr", "Sutter", 4.2, 2),
-                new Student("Philipp", "Krenn", 4.3, 3),
-                new Student("Tomasz", "Borek", 4.1, 2),
-                new Student("Ittai", "Zeidman", 4.5, 1),
-                new Student("Burr", "Sutter", 4.2, 2)};
-
-        String[] a = findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(students);
-        System.out.println(a);
-
+    public static void main(String[] args) {
+        BaseArray a = new BaseArray(new Integer[]{1,2,3,4,5});
+        MapDecorator b = new MapDecorator(a,x->(Integer)x*(Integer)x);
+        System.out.println(Arrays.toString(a.toArray()));
+        System.out.println(Arrays.toString(b.toArray()));
+        a.setValue(0); // що це працювало додайте метод setValue(int index){array[index] = 0};
+        System.out.println(Arrays.toString(a.toArray()));
+        System.out.println(Arrays.toString(b.toArray()));
     }
+
+//    public static void main(String [ ] args){
+//        Student[] students = {
+//                new Student("Ivar", "Grimstad", 3.9, 2),
+//                new Student("Ittai", "Zeidman", 4.5, 1),
+//                new Student("Antons", "Kranga", 4.0, 2),
+//                new Student("Burr", "Sutter", 4.2, 2),
+//                new Student("Philipp", "Krenn", 4.3, 3),
+//                new Student("Tomasz", "Borek", 4.1, 2),
+//                new Student("Ittai", "Zeidman", 4.5, 1),
+//                new Student("Burr", "Sutter", 4.2, 2)};
+//
+//        String[] a = findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(students);
+//        System.out.println(a);
+//
+//    }
 
     public static Integer[]
             filterPositiveIntegersSortAndMultiplyBy2(Integer[] integers) {

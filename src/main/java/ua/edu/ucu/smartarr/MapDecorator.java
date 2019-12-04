@@ -6,23 +6,21 @@ import java.util.function.Function;
 
 // Map every element to another object using MyFunction
 public class MapDecorator extends SmartArrayDecorator {
+    private MyFunction myfunc;
 
     public MapDecorator(SmartArray smartArray, MyFunction myFunc){
         super(smartArray);
-        ArrayList<Object> newArray = new ArrayList<>();
-        Object[] myArray= toArray();
-        int size= size();
-        for(int i = 0; i<size; i++){
-            newArray.add(myFunc.apply(myArray[i]));
-        }
-        super.smartArray = new BaseArray(newArray.toArray());
-
+        this.myfunc = myFunc;
     }
-
 
     @Override
     public Object[] toArray() {
-        return smartArray.toArray();
+        Object[] array = smartArray.toArray().clone();
+        int end = array.length;
+        for (int i = 0; i < end; i++) {
+            array[i] = myfunc.apply(array[i]);
+        }
+        return array.clone();
     }
 
     @Override

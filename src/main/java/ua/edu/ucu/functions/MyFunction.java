@@ -5,11 +5,13 @@
  */
 package ua.edu.ucu.functions;
 
+import java.util.function.Function;
+
 /**
  *
  * @author Andrii_Rodionov
  */
-public interface MyFunction {
+public interface MyFunction extends Function {
 
     Object apply(Object t);
 }
